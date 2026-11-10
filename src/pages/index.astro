@@ -1,0 +1,197 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import Icon from '../components/Icon.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+import { site, waLink } from '../config/site';
+
+const platforms = ['Google Ads', 'Meta', 'Instagram', 'YouTube', 'WhatsApp Business', 'Google Business Profile', 'Shopify', 'WordPress', 'HubSpot', 'Zoho', 'Make', 'LinkedIn'];
+
+const steps = [
+  { n: '01', t: 'Free Audit', d: 'We study your website, ads, SEO, social and competitors, then show you exactly where leads are leaking.' },
+  { n: '02', t: 'Growth Plan', d: 'A clear 90-day roadmap with channels, budgets, content and targets, all agreed before we start.' },
+  { n: '03', t: 'Launch', d: 'Campaigns, content and automations go live fast, with tracking on every call, form and WhatsApp chat.' },
+  { n: '04', t: 'Scale', d: 'Weekly optimisation. We cut what does not work and put more budget into what does.' },
+];
+
+const reasons = [
+  { stat: '9', label: 'services under one roof', d: 'Strategy, ads, SEO, content, video, web and automation. No juggling five vendors.' },
+  { stat: '4', label: 'languages', d: 'English, Malayalam, Hindi and Arabic creatives for Kerala, India and the GCC.' },
+  { stat: '<24h', label: 'response time', d: 'Real people reply on WhatsApp the same day, not ticket queues.' },
+  { stat: '100%', label: 'your accounts', d: 'Ad accounts, pages, website and data always stay in your name.' },
+];
+
+const markets = [
+  { tag: 'Home base', title: 'Kerala', d: 'Kochi, Trivandrum, Kozhikode, Thrissur and every district. We know the local market.', links: locations.filter((l) => l.market === 'Kerala') },
+  { tag: 'Scaling', title: 'Across India', d: 'Bangalore, Chennai, Mumbai, Delhi NCR and D2C brands shipping nationwide.', links: locations.filter((l) => l.market === 'India') },
+  { tag: 'Expanding', title: 'GCC', d: 'UAE, Saudi Arabia, Qatar, Oman, Kuwait and Bahrain, with bilingual campaigns.', links: locations.filter((l) => l.market === 'GCC') },
+  { tag: 'Global', title: 'International', d: 'UK, US, Canada, Australia and Europe. Agency-grade quality at a smarter cost.', links: [] },
+];
+
+const faqs = [
+  { q: 'What does Your ABH do?', a: 'We are a full-service digital marketing agency in Kerala. We offer SEO, Google Ads, Meta Ads, social media management, website development, AI video creation, poster design and marketing automation.' },
+  { q: 'Is the audit really free?', a: 'Yes. Share your website or Instagram and we send a short audit with practical fixes within 48 hours. No obligation to hire us.' },
+  { q: 'Do you work with GCC and international clients?', a: 'Yes. We work with businesses in the UAE, Saudi Arabia, Qatar and beyond through WhatsApp, Google Meet and shared dashboards, and we create Arabic content too.' },
+  { q: 'Do you have long lock-in contracts?', a: 'We recommend at least 3 months for ads and 6 months for SEO so results have time to build. After that, plans are flexible.' },
+  { q: 'How do I get started?', a: `Fill in the audit form, call ${site.phone} or message us on WhatsApp. We will set up a 20-minute call to understand your goals.` },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<Base
+  title="Your ABH | Digital Marketing Agency in Kerala for SEO, Ads & Websites"
+  description="Your ABH is a growth-focused digital marketing agency in Kerala. SEO, Google Ads, Meta Ads, social media, websites, AI video & automation for businesses in India, the GCC and worldwide."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-ink">
+    <div class="grid-bg absolute inset-0"></div>
+    <div class="absolute -top-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-brand/25 blur-3xl"></div>
+    <div class="absolute top-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-violet/25 blur-3xl"></div>
+    <div class="container-x relative grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:py-24">
+      <div>
+        <span class="eyebrow border-white/15 bg-white/5 text-white/80">
+          <span class="h-2 w-2 animate-pulse rounded-full bg-brand"></span> Kerala's growth marketing agency
+        </span>
+        <h1 class="mt-6 text-[2.6rem] leading-[1.02] font-bold text-white sm:text-6xl xl:text-7xl">
+          We turn clicks into <span class="text-gradient">customers.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-muted sm:text-xl">
+          SEO, Google &amp; Meta ads, social media, websites, AI video and automation in one team, focused on one number: <strong class="text-white">your revenue.</strong>
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#audit" class="btn-primary !px-8 !py-4 text-base lg:hidden">Get My Free Audit →</a>
+          <a href="/services" class="btn-ghost !px-8 !py-4 text-base">Explore Services</a>
+          <a href={waLink()} target="_blank" rel="noopener" class="btn-ghost !px-8 !py-4 text-base">💬 WhatsApp Us</a>
+        </div>
+        <ul class="mt-10 grid max-w-lg grid-cols-2 gap-x-6 gap-y-3 text-sm text-white/80">
+          {['Free 48-hour audit', 'No hidden fees', 'Malayalam · English · Arabic', 'You own every account'].map((t) => (
+            <li class="flex items-center gap-2"><span class="grid h-5 w-5 place-items-center rounded-full bg-brand/20 text-[10px] text-brand">✓</span>{t}</li>
+          ))}
+        </ul>
+      </div>
+      <div id="audit" class="scroll-mt-28">
+        <LeadForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM MARQUEE -->
+  <section class="border-b border-slate-100 bg-white py-8" aria-label="Platforms we work with">
+    <p class="mb-5 text-center text-xs font-bold tracking-widest text-slate-400 uppercase">Platforms we master</p>
+    <div class="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+      <div class="animate-marquee flex w-max gap-12 whitespace-nowrap">
+        {[...platforms, ...platforms].map((p) => <span class="font-display text-xl font-bold text-slate-300 sm:text-2xl">{p}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING -->
+  <section class="container-x py-20 sm:py-28">
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-20" data-reveal>
+      <h2 class="text-3xl leading-tight font-bold sm:text-5xl">
+        Most agencies sell posts and clicks. <span class="text-brand">We sell growth.</span>
+      </h2>
+      <div class="space-y-5 text-lg text-slate-600">
+        <p>Likes don’t pay salaries. Every campaign we run is tied to a business number: leads, calls, WhatsApp chats, bookings or sales.</p>
+        <p>You get one senior team handling strategy, creative, ads, SEO, web and automation, with honest reporting on what is working and what we are changing next.</p>
+        <a href="/about" class="inline-flex items-center gap-2 font-bold text-ink hover:text-brand">How we work →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="bg-cream py-20 sm:py-28">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
+        <div>
+          <span class="eyebrow border-brand/30 text-brand">What we do</span>
+          <h2 class="mt-4 max-w-2xl text-3xl font-bold sm:text-5xl">Everything you need to grow online</h2>
+        </div>
+        <a href="/services" class="btn-dark self-start md:self-auto">All Services →</a>
+      </div>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, i) => (
+          <a href={`/services/${s.slug}`} data-reveal style={`transition-delay:${(i % 3) * 80}ms`}
+            class="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white p-7 transition hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-white transition group-hover:bg-brand"><Icon d={s.icon} /></span>
+            <h3 class="mt-6 text-xl font-bold">{s.name}</h3>
+            <p class="mt-2 flex-1 text-slate-600">{s.short}</p>
+            <span class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-ink group-hover:text-brand">Learn more <span class="transition group-hover:translate-x-1">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="relative overflow-hidden bg-ink py-20 text-white sm:py-28">
+    <div class="grid-bg absolute inset-0"></div>
+    <div class="container-x relative">
+      <div class="max-w-2xl" data-reveal>
+        <span class="eyebrow border-white/15 text-white/70">Our process</span>
+        <h2 class="mt-4 text-3xl font-bold sm:text-5xl">From first call to steady leads in <span class="text-gradient">4 steps</span></h2>
+      </div>
+      <div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <div class="rounded-3xl border border-white/10 bg-white/[0.03] p-7" data-reveal style={`transition-delay:${i * 90}ms`}>
+            <span class="font-display text-5xl font-bold text-brand/80">{s.n}</span>
+            <h3 class="mt-6 text-xl font-bold">{s.t}</h3>
+            <p class="mt-2 text-muted">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="container-x py-20 sm:py-28">
+    <div class="text-center" data-reveal>
+      <span class="eyebrow border-brand/30 text-brand">Why Your ABH</span>
+      <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold sm:text-5xl">Big-agency results without the big-agency runaround</h2>
+    </div>
+    <div class="mt-14 grid gap-px overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
+      {reasons.map((r) => (
+        <div class="bg-white p-8" data-reveal>
+          <p class="font-display text-5xl font-bold text-ink">{r.stat}</p>
+          <p class="mt-1 text-sm font-bold tracking-wide text-brand uppercase">{r.label}</p>
+          <p class="mt-4 text-slate-600">{r.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section class="bg-cream py-20 sm:py-28">
+    <div class="container-x">
+      <div class="max-w-2xl" data-reveal>
+        <span class="eyebrow border-brand/30 text-brand">Where we work</span>
+        <h2 class="mt-4 text-3xl font-bold sm:text-5xl">Rooted in Kerala. Growing brands everywhere.</h2>
+      </div>
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {markets.map((m) => (
+          <div class="flex flex-col rounded-3xl bg-white p-7 shadow-sm" data-reveal>
+            <span class="text-xs font-bold tracking-widest text-brand uppercase">{m.tag}</span>
+            <h3 class="mt-3 text-2xl font-bold">{m.title}</h3>
+            <p class="mt-2 flex-1 text-slate-600">{m.d}</p>
+            {m.links.length > 0 && (
+              <div class="mt-5 flex flex-wrap gap-2">
+                {m.links.map((l) => <a href={`/locations/${l.slug}`} class="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold hover:border-brand hover:text-brand">{l.name}</a>)}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} />
+  <CTABanner />
+</Base>

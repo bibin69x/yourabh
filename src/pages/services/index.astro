@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { services } from '../../data/services';
+---
+<Base
+  title="Digital Marketing Services | SEO, Ads, Social & Web | Your ABH"
+  description="Explore Your ABH services: SEO, Google Ads, Meta Ads, social media management, website development, AI video creation, poster design and marketing automation."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Every growth channel. <span class='text-gradient'>One team.</span>"
+    text="Pick one service or combine them into a full-funnel growth plan. Every service is built around measurable leads and sales."
+    crumbs={[{ href: '/services', label: 'Services' }]}
+  />
+  <section class="container-x py-20">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {services.map((s) => (
+        <a href={`/services/${s.slug}`} data-reveal class="group flex gap-6 rounded-3xl border border-slate-200 p-7 transition hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10 sm:p-9">
+          <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-ink text-white transition group-hover:bg-brand"><Icon d={s.icon} class="h-7 w-7" /></span>
+          <div>
+            <h2 class="text-2xl font-bold">{s.name}</h2>
+            <p class="mt-2 text-slate-600">{s.short}</p>
+            <ul class="mt-4 grid gap-1.5 text-sm text-slate-500 sm:grid-cols-2">
+              {s.deliverables.slice(0, 4).map((d) => <li class="flex gap-2"><span class="text-brand">✓</span>{d}</li>)}
+            </ul>
+            <span class="mt-5 inline-flex items-center gap-1 text-sm font-bold group-hover:text-brand">View service →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CTABanner title="Not sure where to start?" text="Tell us your goal and budget. We'll recommend the right mix of channels in a free audit." />
+</Base>

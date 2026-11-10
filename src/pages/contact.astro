@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { site, waLink } from '../config/site';
+
+const cards = [
+  { icon: '💬', t: 'WhatsApp', v: site.phone, href: waLink(), note: 'Fastest reply', ext: true },
+  { icon: '📞', t: 'Call us', v: site.phone, href: `tel:${site.phoneRaw}`, note: site.hours, ext: false },
+  { icon: '✉️', t: 'Email', v: site.email, href: `mailto:${site.email}`, note: 'Reply within 24 hours', ext: false },
+];
+---
+<Base title="Contact Your ABH | Get a Free Digital Marketing Audit" description={`Contact Your ABH for a free marketing audit. WhatsApp or call ${site.phone} or email ${site.email}. Serving Kerala, India, GCC and international clients.`}>
+  <PageHero
+    eyebrow="Contact"
+    title="Let’s talk <span class='text-gradient'>growth</span>"
+    text="Tell us about your business and goals. We’ll reply within 24 hours, usually much sooner."
+    crumbs={[{ href: '/contact', label: 'Contact' }]}
+  />
+  <section class="container-x py-20">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+      <div class="space-y-4">
+        {cards.map((c) => (
+          <a href={c.href} target={c.ext ? '_blank' : undefined} rel={c.ext ? 'noopener' : undefined}
+            class="flex items-center gap-5 rounded-3xl border border-slate-200 p-6 transition hover:border-brand/40 hover:shadow-lg">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-cream text-2xl">{c.icon}</span>
+            <span class="min-w-0">
+              <span class="block text-sm font-bold text-slate-500">{c.t}</span>
+              <span class="block truncate text-lg font-bold">{c.v}</span>
+              <span class="block text-sm text-slate-500">{c.note}</span>
+            </span>
+          </a>
+        ))}
+        <div class="rounded-3xl bg-ink p-7 text-white">
+          <h2 class="text-lg font-bold">Where we work</h2>
+          <p class="mt-2 text-muted">Based in {site.address.region}, {site.address.countryName}. We work with clients across India, UAE, Saudi Arabia, Qatar, Oman, Kuwait, Bahrain and internationally.</p>
+        </div>
+      </div>
+      <div id="audit" class="scroll-mt-28"><LeadForm /></div>
+    </div>
+  </section>
+</Base>

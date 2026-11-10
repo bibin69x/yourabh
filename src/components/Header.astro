@@ -1,0 +1,83 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+import { site, waLink } from '../config/site';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/work', label: 'Work' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Insights' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="sticky top-0 z-40 border-b border-white/10 bg-ink/90 backdrop-blur-md">
+  <div class="hidden border-b border-white/5 text-xs text-muted md:block">
+    <div class="container-x flex h-9 items-center justify-between">
+      <p>Serving Kerala · India · UAE · Saudi · Qatar · Worldwide</p>
+      <div class="flex items-center gap-5">
+        <a href={`tel:${site.phoneRaw}`} class="hover:text-white">📞 {site.phone}</a>
+        <a href={`mailto:${site.email}`} class="hover:text-white">✉ {site.email}</a>
+      </div>
+    </div>
+  </div>
+  <div class="container-x flex h-16 items-center justify-between gap-4 lg:h-[72px]">
+    <Logo />
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      <div class="group relative">
+        <a href="/services" class={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition hover:text-white ${path.startsWith('/services') ? 'text-white' : 'text-white/70'}`}>
+          Services
+          <svg class="h-4 w-4 transition group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.4z"/></svg>
+        </a>
+        <div class="invisible absolute top-full left-1/2 w-[640px] -translate-x-1/2 pt-3 opacity-0 transition-all group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+          <div class="grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-ink-2 p-3 shadow-2xl">
+            {services.map((s) => (
+              <a href={`/services/${s.slug}`} class="flex gap-3 rounded-xl p-3 transition hover:bg-white/5">
+                <span class="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand/15 text-brand"><Icon d={s.icon} class="h-5 w-5" /></span>
+                <span>
+                  <span class="block text-sm font-bold text-white">{s.name}</span>
+                  <span class="block text-xs leading-snug text-muted">{s.short}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      {nav.map((n) => (
+        <a href={n.href} class={`rounded-full px-4 py-2 text-sm font-semibold transition hover:text-white ${path.startsWith(n.href) ? 'text-white' : 'text-white/70'}`}>{n.label}</a>
+      ))}
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="/contact#audit" class="btn-primary hidden !py-2.5 sm:inline-flex">Get Free Audit →</a>
+      <button id="menu-btn" class="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden max-h-[calc(100vh-64px)] overflow-y-auto border-t border-white/10 bg-ink lg:hidden">
+    <div class="container-x py-4">
+      <p class="mb-2 text-xs font-bold tracking-widest text-muted uppercase">Services</p>
+      <div class="grid grid-cols-1 gap-1 sm:grid-cols-2">
+        {services.map((s) => (
+          <a href={`/services/${s.slug}`} class="flex items-center gap-3 rounded-lg px-2 py-2.5 text-white/90 hover:bg-white/5">
+            <Icon d={s.icon} class="h-4 w-4 text-brand" />{s.name}
+          </a>
+        ))}
+      </div>
+      <div class="my-4 h-px bg-white/10"></div>
+      {nav.map((n) => <a href={n.href} class="block rounded-lg px-2 py-2.5 font-semibold text-white hover:bg-white/5">{n.label}</a>)}
+      <div class="mt-4 grid gap-2">
+        <a href="/contact#audit" class="btn-primary">Get Free Audit →</a>
+        <a href={waLink()} target="_blank" rel="noopener" class="btn-ghost">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const open = menu!.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

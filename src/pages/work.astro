@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { waLink } from '../config/site';
+
+// ─────────────────────────────────────────────────────────────
+// Add real projects here. Only publish results you can prove.
+// image: put screenshots in /public/work/ e.g. '/work/client-site.jpg'
+// ─────────────────────────────────────────────────────────────
+const projects: { client: string; industry: string; location: string; services: string[]; result: string; image?: string; url?: string }[] = [
+  // { client: 'Client Name', industry: 'Healthcare', location: 'Kochi', services: ['SEO', 'Google Ads'], result: '120 leads/month at ₹210 CPL', image: '/work/client.jpg', url: 'https://client.com' },
+];
+---
+<Base title="Our Work & Case Studies | Your ABH" description="See websites, campaigns and results from Your ABH, a digital marketing agency serving Kerala, India and the GCC.">
+  <PageHero
+    eyebrow="Our work"
+    title="Results we’re <span class='text-gradient'>proud of</span>"
+    text="Websites, campaigns, creatives and automations built for real businesses."
+    crumbs={[{ href: '/work', label: 'Work' }]}
+  />
+  <section class="container-x py-20">
+    {projects.length > 0 ? (
+      <div class="grid gap-6 md:grid-cols-2">
+        {projects.map((p) => (
+          <article class="group overflow-hidden rounded-3xl border border-slate-200" data-reveal>
+            <div class="aspect-[16/10] overflow-hidden bg-cream">
+              {p.image && <img src={p.image} alt={`${p.client} project by Your ABH`} loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />}
+            </div>
+            <div class="p-7">
+              <p class="text-sm font-semibold text-slate-500">{p.industry} · {p.location}</p>
+              <h2 class="mt-1 text-2xl font-bold">{p.client}</h2>
+              <p class="mt-3 font-display text-xl font-bold text-brand">{p.result}</p>
+              <div class="mt-4 flex flex-wrap gap-2">{p.services.map((s) => <span class="rounded-full bg-cream px-3 py-1 text-xs font-semibold">{s}</span>)}</div>
+              {p.url && <a href={p.url} target="_blank" rel="noopener" class="mt-5 inline-block text-sm font-bold hover:text-brand">Visit site →</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div class="mx-auto max-w-2xl rounded-3xl border border-dashed border-slate-300 p-10 text-center">
+        <h2 class="text-2xl font-bold">Case studies coming soon</h2>
+        <p class="mt-3 text-slate-600">We're putting together detailed case studies. Want to see recent results for your industry? Message us and we'll share examples.</p>
+        <a href={waLink('Hi Your ABH, can you share some recent work and results?')} target="_blank" rel="noopener" class="btn-primary mt-6">💬 Ask for examples</a>
+      </div>
+    )}
+  </section>
+  <CTABanner title="Your business could be our next success story" />
+</Base>

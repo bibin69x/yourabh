@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Icon from '../../components/Icon.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { locations, type Location } from '../../data/locations';
+import { services } from '../../data/services';
+import { site, waLink } from '../../config/site';
+
+export function getStaticPaths() {
+  return locations.map((location) => ({ params: { slug: location.slug }, props: { location } }));
+}
+const { location: loc } = Astro.props as { location: Location };
+const isGCC = loc.market === 'GCC';
+
+const faqs = [
+  { q: `Are you a digital marketing agency based in ${loc.name}?`, a: isGCC || loc.market === 'India'
+      ? `Our team is based in Kerala, India, and we work with ${loc.name} businesses remotely over WhatsApp, Google Meet and shared dashboards. You get senior-level expertise at a smarter cost.`
+      : `We are a Kerala-based agency and work closely with ${loc.name} businesses, with in-person meetings where needed.` },
+  { q: `What services do you offer in ${loc.name}?`, a: `SEO, Google Ads, Meta Ads, social media management, website development, AI video creation, poster design and marketing automation.` },
+  { q: `How much does digital marketing cost in ${loc.name}?`, a: `Pricing depends on channels and goals. We provide a fixed quote after a free audit. Ad spend is paid directly to Google or Meta.` },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Digital Marketing Services in ${loc.name}`,
+    provider: { '@id': `${site.url}/#organization` },
+    areaServed: { '@type': 'Place', name: `${loc.name}, ${loc.region}` },
+    url: `${site.url}/locations/${loc.slug}`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<Base
+  title={`Digital Marketing Agency in ${loc.name} | SEO, Ads & Web | Your ABH`}
+  description={`Grow your ${loc.name} business with Your ABH: SEO, Google Ads, Meta Ads, social media, websites, AI video and automation. Get a free marketing audit.`}
+  schema={schema}
+>
+  <PageHero
+    eyebrow={`${loc.name} · ${loc.region}`}
+    title={`Digital marketing agency for <span class='text-gradient'>${loc.name}</span> businesses`}
+    text={loc.intro}
+    crumbs={[{ href: `/locations/${loc.slug}`, label: loc.name }]}
+  >
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href="#audit" class="btn-primary !px-8 !py-4 text-base">Get My Free Audit →</a>
+      <a href={waLink(`Hi Your ABH, I'm from ${loc.name} and want to grow my business.`)} target="_blank" rel="noopener" class="btn-ghost !px-8 !py-4 text-base">💬 WhatsApp Us</a>
+    </div>
+  </PageHero>
+
+  <section class="container-x py-20">
+    <div class="grid gap-14 lg:grid-cols-[1.2fr_1fr]">
+      <div>
+        <h2 class="text-3xl font-bold sm:text-4xl">Our services in {loc.name}</h2>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          {services.map((s) => (
+            <a href={`/services/${s.slug}`} class="group flex gap-4 rounded-2xl border border-slate-200 p-5 transition hover:border-brand/40">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-ink text-white group-hover:bg-brand"><Icon d={s.icon} class="h-5 w-5" /></span>
+              <span><span class="block font-bold">{s.name}</span><span class="block text-sm text-slate-500">{s.short}</span></span>
+            </a>
+          ))}
+        </div>
+
+        <h2 class="mt-16 text-3xl font-bold sm:text-4xl">Industries we help in {loc.name}</h2>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {loc.industries.map((i) => <span class="rounded-full bg-cream px-4 py-2 text-sm font-semibold">{i}</span>)}
+        </div>
+
+        {isGCC && (
+          <div class="mt-12 rounded-3xl bg-ink p-8 text-white">
+            <h3 class="text-xl font-bold">Working with a Kerala team from {loc.name}</h3>
+            <ul class="mt-4 space-y-2 text-muted">
+              <li>✓ Overlapping working hours with the GCC (IST is only 1.5–2.5 hrs ahead)</li>
+              <li>✓ Arabic &amp; English creatives and ad copy</li>
+              <li>✓ WhatsApp-first communication with weekly video calls</li>
+              <li>✓ Senior talent at a fraction of local agency costs</li>
+            </ul>
+          </div>
+        )}
+      </div>
+      <div id="audit" class="scroll-mt-28 lg:sticky lg:top-28 lg:self-start">
+        <LeadForm title={`Free audit for ${loc.name} businesses`} />
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-cream"><FAQ faqs={faqs} /></div>
+  <CTABanner />
+</Base>

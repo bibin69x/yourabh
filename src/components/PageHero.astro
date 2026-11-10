@@ -1,0 +1,26 @@
+---
+interface Props { eyebrow?: string; title: string; text?: string; crumbs?: { href: string; label: string }[] }
+const { eyebrow, title, text, crumbs = [] } = Astro.props;
+---
+<section class="relative overflow-hidden bg-ink pt-14 pb-20 sm:pt-20 sm:pb-28">
+  <div class="grid-bg absolute inset-0"></div>
+  <div class="absolute -top-40 right-0 h-96 w-96 rounded-full bg-violet/25 blur-3xl"></div>
+  <div class="absolute -bottom-40 left-0 h-96 w-96 rounded-full bg-brand/20 blur-3xl"></div>
+  <div class="container-x relative">
+    {crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-muted">
+        <a href="/" class="hover:text-white">Home</a>
+        {crumbs.map((c) => (
+          <>
+            <span class="mx-2">/</span>
+            <a href={c.href} class="hover:text-white">{c.label}</a>
+          </>
+        ))}
+      </nav>
+    )}
+    {eyebrow && <span class="eyebrow border-brand/40 text-brand">{eyebrow}</span>}
+    <h1 class="mt-5 max-w-4xl text-4xl leading-[1.05] font-bold text-white sm:text-6xl" set:html={title} />
+    {text && <p class="mt-6 max-w-2xl text-lg text-muted">{text}</p>}
+    <slot />
+  </div>
+</section>

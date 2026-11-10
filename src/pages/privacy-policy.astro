@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../config/site';
+---
+<Base title="Privacy Policy | Your ABH" description="How Your ABH collects, uses and protects your information.">
+  <PageHero title="Privacy Policy" crumbs={[{ href: '/privacy-policy', label: 'Privacy Policy' }]} />
+  <section class="container-x max-w-3xl py-16">
+    <div class="prose-abh">
+      <!-- TODO: Have this reviewed for your business before launch. -->
+      <p><em>Last updated: {new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+      <h2>Information we collect</h2>
+      <p>When you fill in a form, call us or message us on WhatsApp, we collect the details you share, such as your name, phone number, email, website and business information.</p>
+      <h2>How we use it</h2>
+      <ul>
+        <li>To reply to your enquiry and prepare your audit or proposal</li>
+        <li>To deliver services you have hired us for</li>
+        <li>To improve our website and marketing (via analytics such as Google Analytics and Meta Pixel)</li>
+      </ul>
+      <h2>Sharing</h2>
+      <p>We never sell your data. We only share it with tools we use to run our business (for example form, email and analytics providers), and only as needed.</p>
+      <h2>Cookies</h2>
+      <p>This website may use cookies for analytics and advertising measurement. You can block cookies in your browser settings.</p>
+      <h2>Your rights</h2>
+      <p>You can ask us to access, correct or delete your data at any time by emailing <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      <h2>Contact</h2>
+      <p>{site.legalName}, {site.address.region}, {site.address.countryName}. Phone: {site.phone}. Email: {site.email}.</p>
+    </div>
+  </section>
+</Base>

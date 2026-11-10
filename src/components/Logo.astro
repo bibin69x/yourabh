@@ -1,0 +1,9 @@
+---
+interface Props { light?: boolean; class?: string }
+const { light = true, class: cls = '' } = Astro.props;
+---
+<a href="/" class={`inline-flex items-center ${cls}`} aria-label="Your ABH home">
+  <span class={`font-display text-2xl leading-none font-bold tracking-tight ${light ? 'text-white' : 'text-ink'}`}>
+    <span class="font-medium opacity-70">your</span>ABH<span class="text-brand">.</span>
+  </span>
+</a>

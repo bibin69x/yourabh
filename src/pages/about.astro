@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const values = [
+  { t: 'Revenue over vanity', d: 'We measure success in leads, sales and ROI, not likes and impressions.' },
+  { t: 'Radical transparency', d: 'You see what we spend, what we change and why. Every account stays in your name.' },
+  { t: 'Speed matters', d: 'Fast replies, fast launches and fast tests. Markets don’t wait, and neither do we.' },
+  { t: 'Always learning', d: 'AI, automation and platform updates move fast. We test new tools first so you don’t have to.' },
+];
+---
+<Base title="About Your ABH | Digital Marketing Agency from Kerala" description="Your ABH is a Kerala-born digital marketing agency helping businesses in India, the GCC and worldwide grow with SEO, ads, content, websites and automation.">
+  <PageHero
+    eyebrow="About us"
+    title="A Kerala agency built for <span class='text-gradient'>growth</span>"
+    text="We started Your ABH because too many good businesses were paying agencies for posts and reports instead of customers. We wanted to build something better."
+    crumbs={[{ href: '/about', label: 'About' }]}
+  />
+
+  <section class="container-x py-20 sm:py-28">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <h2 class="text-3xl font-bold sm:text-5xl" data-reveal>One team that thinks like your growth partner, not a vendor.</h2>
+      <div class="space-y-5 text-lg text-slate-600" data-reveal>
+        <!-- TODO: Replace with your real founder story -->
+        <p>Your ABH brings together marketers, designers, developers and automation specialists under one roof. Instead of hiring a separate SEO company, ad agency, designer and web developer, you work with one team that sees the whole picture.</p>
+        <p>We started in Kerala and now work with businesses across India, the UAE, Saudi Arabia, Qatar and further afield. Whether you are a clinic in Kochi, a real estate developer in Dubai or a D2C brand shipping across India, our job is the same: bring in more customers profitably.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream py-20 sm:py-28">
+    <div class="container-x">
+      <h2 class="text-3xl font-bold sm:text-4xl" data-reveal>What we believe</h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v, i) => (
+          <div class="rounded-3xl bg-white p-7" data-reveal>
+            <span class="font-display text-sm font-bold text-brand">0{i + 1}</span>
+            <h3 class="mt-3 text-xl font-bold">{v.t}</h3>
+            <p class="mt-2 text-slate-600">{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner title="Let’s build your growth engine" />
+</Base>

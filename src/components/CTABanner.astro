@@ -1,0 +1,22 @@
+---
+import { waLink } from '../config/site';
+interface Props { title?: string; text?: string }
+const {
+  title = 'Ready to grow faster than your competitors?',
+  text = 'Get a free, no-obligation audit of your website, SEO and ads, with a clear plan to get more leads.',
+} = Astro.props;
+---
+<section class="container-x my-20 sm:my-28">
+  <div class="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-14 text-center sm:px-12 sm:py-20" data-reveal>
+    <div class="grid-bg absolute inset-0"></div>
+    <div class="absolute -top-24 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand/30 blur-3xl"></div>
+    <div class="relative">
+      <h2 class="mx-auto max-w-3xl text-3xl font-bold text-white sm:text-5xl">{title}</h2>
+      <p class="mx-auto mt-4 max-w-xl text-muted sm:text-lg">{text}</p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href="/contact#audit" class="btn-primary !px-8 !py-4 text-base">Get My Free Audit →</a>
+        <a href={waLink()} target="_blank" rel="noopener" class="btn-ghost !px-8 !py-4 text-base">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>

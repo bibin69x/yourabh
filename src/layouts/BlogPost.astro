@@ -1,0 +1,35 @@
+---
+import Base from './Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { site } from '../config/site';
+
+const { frontmatter } = Astro.props;
+const { title, description, date, category = 'Insights' } = frontmatter;
+const url = `${site.url}${Astro.url.pathname.replace(/\/$/, '')}`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: date,
+  author: { '@type': 'Organization', name: site.name },
+  publisher: { '@id': `${site.url}/#organization` },
+  mainEntityOfPage: url,
+};
+---
+<Base title={`${title} | ${site.name}`} description={description} schema={schema}>
+  <PageHero eyebrow={category} title={title} text={description} crumbs={[{ href: '/blog', label: 'Insights' }]}>
+    <p class="mt-6 text-sm text-muted">{new Date(date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })} · {site.name} Team</p>
+  </PageHero>
+  <section class="container-x py-16">
+    <div class="grid gap-14 lg:grid-cols-[1fr_380px]">
+      <article class="prose-abh max-w-3xl text-lg"><slot /></article>
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <LeadForm title="Want this done for you?" subtitle="Get a free audit and a custom growth plan from our team." />
+      </aside>
+    </div>
+  </section>
+  <CTABanner />
+</Base>
