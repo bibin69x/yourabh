@@ -74,6 +74,36 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: 'automation',
+    name: 'Automation',
+    short: 'WhatsApp, CRM and lead-follow-up automations that save hours.',
+    metaTitle: 'Marketing Automation & WhatsApp Automation | Your ABH',
+    metaDescription:
+      'Marketing and business automation: WhatsApp chatbots, CRM workflows, lead follow-ups, email sequences and AI agents that save time and close more deals.',
+    headline: 'Never miss a lead again',
+    intro:
+      'Every lead gets an instant reply, goes into your CRM and gets followed up on time, automatically. We build WhatsApp chatbots, email sequences and AI workflows that free up your team.',
+    icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+    deliverables: [
+      'WhatsApp Business API & chatbots',
+      'CRM setup & lead pipelines',
+      'Instant lead alerts & auto-replies',
+      'Email & SMS follow-up sequences',
+      'AI agents for FAQs and booking',
+      'Zapier / Make / n8n workflows',
+    ],
+    outcomes: [
+      { stat: '< 1 min', label: 'lead response time' },
+      { stat: '24/7', label: 'automated follow-ups' },
+      { stat: '0', label: 'leads lost to slow replies' },
+    ],
+    faqs: [
+      { q: 'What tools do you work with?', a: 'WhatsApp Business API, Zoho, HubSpot, Google Sheets, Make, Zapier, n8n and most tools that have an API.' },
+      { q: 'Do I need technical knowledge?', a: 'No. We build, test and hand over simple dashboards your team can use.' },
+      { q: 'Can automation connect to my ads?', a: 'Yes. Leads from Google and Meta ads can flow straight into WhatsApp, your CRM and your sales team in seconds.' },
+    ],
+  },
+  {
     slug: 'website-development',
     name: 'Website Development',
     short: 'Fast, SEO-ready websites designed to turn visitors into leads.',
@@ -251,36 +281,6 @@ export const services: Service[] = [
       { q: 'Can I order posters without a monthly plan?', a: 'Yes. We offer poster packs as well as monthly design retainers.' },
       { q: 'Do you design in Malayalam and Arabic?', a: 'Yes. We design in English, Malayalam, Hindi and Arabic.' },
       { q: 'How many revisions do I get?', a: 'Each design includes revisions until you are happy, within the agreed brief.' },
-    ],
-  },
-  {
-    slug: 'automation',
-    name: 'Automation',
-    short: 'WhatsApp, CRM and lead-follow-up automations that save hours.',
-    metaTitle: 'Marketing Automation & WhatsApp Automation | Your ABH',
-    metaDescription:
-      'Marketing and business automation: WhatsApp chatbots, CRM workflows, lead follow-ups, email sequences and AI agents that save time and close more deals.',
-    headline: 'Never miss a lead again',
-    intro:
-      'Every lead gets an instant reply, goes into your CRM and gets followed up on time, automatically. We build WhatsApp chatbots, email sequences and AI workflows that free up your team.',
-    icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
-    deliverables: [
-      'WhatsApp Business API & chatbots',
-      'CRM setup & lead pipelines',
-      'Instant lead alerts & auto-replies',
-      'Email & SMS follow-up sequences',
-      'AI agents for FAQs and booking',
-      'Zapier / Make / n8n workflows',
-    ],
-    outcomes: [
-      { stat: '< 1 min', label: 'lead response time' },
-      { stat: '24/7', label: 'automated follow-ups' },
-      { stat: '0', label: 'leads lost to slow replies' },
-    ],
-    faqs: [
-      { q: 'What tools do you work with?', a: 'WhatsApp Business API, Zoho, HubSpot, Google Sheets, Make, Zapier, n8n and most tools that have an API.' },
-      { q: 'Do I need technical knowledge?', a: 'No. We build, test and hand over simple dashboards your team can use.' },
-      { q: 'Can automation connect to my ads?', a: 'Yes. Leads from Google and Meta ads can flow straight into WhatsApp, your CRM and your sales team in seconds.' },
     ],
   },
 ];
