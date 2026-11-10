@@ -11,10 +11,10 @@ const year = new Date().getFullYear();
       <Logo />
       <p class="mt-5 max-w-sm text-sm leading-relaxed text-muted">{site.description}</p>
       <div class="mt-6 space-y-2 text-sm">
-        <a href={`tel:${site.phoneRaw}`} class="block font-semibold text-white hover:text-brand">📞 {site.phone}</a>
-        <a href={waLink()} target="_blank" rel="noopener" class="block font-semibold text-white hover:text-brand">💬 WhatsApp: {site.phone}</a>
-        <a href={`mailto:${site.email}`} class="block font-semibold text-white hover:text-brand">✉ {site.email}</a>
-        <p class="text-muted">🕘 {site.hours}</p>
+        <a href={`tel:${site.phoneRaw}`} class="block font-semibold text-white hover:text-brand">{site.phone}</a>
+        <a href={waLink()} target="_blank" rel="noopener" class="block font-semibold text-white hover:text-brand">WhatsApp: {site.phone}</a>
+        <a href={`mailto:${site.email}`} class="block font-semibold text-white hover:text-brand">{site.email}</a>
+        <p class="text-muted">{site.hours}</p>
       </div>
     </div>
     <div>
@@ -43,7 +43,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-white/10">
     <div class="container-x flex flex-col items-center justify-between gap-2 py-6 pb-24 text-xs text-muted sm:flex-row sm:pb-6">
       <p>© {year} {site.name}. All rights reserved.</p>
-      <p>Made in Kerala 🌴 for brands everywhere.</p>
+      <p>Made in Kerala for brands everywhere.</p>
     </div>
   </div>
 </footer>

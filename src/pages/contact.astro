@@ -5,9 +5,9 @@ import LeadForm from '../components/LeadForm.astro';
 import { site, waLink } from '../config/site';
 
 const cards = [
-  { icon: '💬', t: 'WhatsApp', v: site.phone, href: waLink(), note: 'Fastest reply', ext: true },
-  { icon: '📞', t: 'Call us', v: site.phone, href: `tel:${site.phoneRaw}`, note: site.hours, ext: false },
-  { icon: '✉️', t: 'Email', v: site.email, href: `mailto:${site.email}`, note: 'Reply within 24 hours', ext: false },
+  { t: 'WhatsApp', v: site.phone, href: waLink(), note: 'Fastest reply', ext: true },
+  { t: 'Call us', v: site.phone, href: `tel:${site.phoneRaw}`, note: site.hours, ext: false },
+  { t: 'Email', v: site.email, href: `mailto:${site.email}`, note: 'Reply within 24 hours', ext: false },
 ];
 ---
 <Base title="Contact Your ABH | Get a Free Digital Marketing Audit" description={`Contact Your ABH for a free marketing audit. WhatsApp or call ${site.phone} or email ${site.email}. Serving Kerala, India, GCC and international clients.`}>
@@ -23,7 +23,6 @@ const cards = [
         {cards.map((c) => (
           <a href={c.href} target={c.ext ? '_blank' : undefined} rel={c.ext ? 'noopener' : undefined}
             class="flex items-center gap-5 rounded-3xl border border-slate-200 p-6 transition hover:border-brand/40 hover:shadow-lg">
-            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-cream text-2xl">{c.icon}</span>
             <span class="min-w-0">
               <span class="block text-sm font-bold text-slate-500">{c.t}</span>
               <span class="block truncate text-lg font-bold">{c.v}</span>
